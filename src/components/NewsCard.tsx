@@ -1,43 +1,58 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
+import config from "../api/config.json";
 
 type NewsCardProps = {
-  type: "video" | "image";
-  thumbnail: string;
+  image?: string;
+  video?: string;
   title: string;
   description: string;
   link: string;
-  category?: string; // optional for news type/category
+  category?: string;
 };
 
 const NewsCard: React.FC<NewsCardProps> = ({
-  type,
-  thumbnail,
+  image,
+  video,
   title,
   description,
   link,
   category = "Breaking News",
 }) => {
+  const renderMedia = () => {
+    if (image) {
+      return (
+        <img
+          src={`${config.backendURl}/${image}`}
+          alt={title}
+          className="w-full h-56 object-cover"
+        />
+      );
+    } else if (video) {
+      return (
+        <video
+          controls
+          className="w-full h-56 object-cover"
+          poster={`${config.backendURl}/${video}`}
+        >
+          <source src={`${config.backendURl}/${video}`} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      );
+    } else {
+      return (
+        <div className="w-full h-56 flex items-center justify-center bg-gray-200 text-gray-500 text-sm">
+          No Media Available
+        </div>
+      );
+    }
+  };
+
   return (
-    <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-gray-200">
+    <div className="mt-8 bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-gray-200">
       {/* Media */}
       <div className="relative">
-        {type === "image" ? (
-          <img
-            src={thumbnail}
-            alt={title}
-            className="w-full h-56 object-cover"
-          />
-        ) : (
-          <video
-            controls
-            className="w-full h-56 object-cover"
-            poster={thumbnail}
-          >
-            <source src={thumbnail} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        )}
+        {renderMedia()}
 
         {/* Category badge */}
         <span className="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">

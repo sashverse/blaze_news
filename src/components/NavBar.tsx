@@ -17,13 +17,21 @@ const Navbar = () => {
   const filteredArticles = mockArticles.filter(article =>
     article.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
+    // ✅ Get today's date
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <header className="bg-white shadow-md fixed w-full top-0 z-50">
       {/* Top Bar */}
       <div className="bg-red-600 text-white text-sm px-4 py-1 flex justify-between items-center">
         <span className="font-semibold">Breaking: Major Crime Updates Live 🚨</span>
-        <span className="hidden md:block">Monday, August 26, 2025</span>
+        <span className="hidden md:block">{formattedDate}</span>
       </div>
 
       {/* Main Nav */}

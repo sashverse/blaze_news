@@ -25,9 +25,13 @@ export default function Home() {
         <meta property="og:image" content="/logo.png" />
         <meta property="og:type" content="website" />
       </Head>
+      <div className=" mt-21">
+      <NewsSection/>
+
+      </div>
 
       {/* ✅ Hero Section (Hyderabad Breaking News) */}
-      <section className="relative bg-gray-900 text-white mt-16">
+      <section className="relative bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto mt-8 px-6 py-20 text-center">
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-red-500 drop-shadow-lg">
             Blaze News Hyderabad
@@ -73,7 +77,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <NewsSection/>
 
       {/* ✅ Video Highlights Section */}
       <VideoHighlights />
