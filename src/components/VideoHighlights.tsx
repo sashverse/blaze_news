@@ -1,62 +1,55 @@
 import React from "react";
 
 const VideoHighlights = () => {
+  // ✅ Put all your YouTube links here
+  const videos = [
+    "0E72RT-Iw3g?si=OonA1F0N8MZAdGRv",
+    "TOrQwVj8wwQ?si=zyioINYaOUwVCEJG",
+    "-MRW8hWR2aw?si=Uu9pCjr3YHQ6FHDB",
+    "i2Ql8o5Rr8A?si=6VTqzKVDwwvXpqC7",
+    "cTBtCyDEi8U?si=E73gDK41S-QJ2_57",
+    "1yCdG9-xMTg?si=RAM2eZvGI5cymV4M",
+  ];
+
   return (
     <section className="bg-gray-900 text-white py-16">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Heading */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
           <h2 className="text-4xl md:text-5xl font-extrabold text-red-500">
-            🔥 Blaze News Video Highlights
+            Blaze News Media
           </h2>
-          <p className="mt-3 text-lg text-gray-300">
-            Watch exclusive crime reports, live investigations, and breaking stories.
-          </p>
         </div>
 
         {/* Video Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Video 1 */}
-          <div className="group relative overflow-hidden rounded-2xl shadow-lg">
-            <div className="aspect-w-16 aspect-h-9">
+        <div className="grid md:grid-cols-3 gap-6">
+          {videos.map((id, index) => (
+            <div
+              key={index}
+              className="rounded-xl overflow-hidden shadow-lg"
+            >
               <iframe
-                className="w-full h-full"
-                src="https://www.youtube.com/embed/ScMzIvxBSi4"
-                title="Crime Report 1"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                className="w-full aspect-video"
+                src={`https://www.youtube.com/embed/${id}`}
+                title={`Blaze News Video ${index + 1}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               ></iframe>
             </div>
-            <div className="p-5 bg-black/80 group-hover:bg-red-600 transition duration-300">
-              <h3 className="text-xl font-bold">🚨 Major Crime Investigation in Hyderabad</h3>
-              <p className="mt-2 text-sm text-gray-300 group-hover:text-white transition">
-                Exclusive footage from the scene as police uncover a massive drug operation 
-                spanning multiple states.
-              </p>
-            </div>
-          </div>
+          ))}
+        </div>
 
-          {/* Video 2 */}
-          <div className="group relative overflow-hidden rounded-2xl shadow-lg">
-            <div className="aspect-w-16 aspect-h-9">
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                title="Crime Report 2"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-            <div className="p-5 bg-black/80 group-hover:bg-red-600 transition duration-300">
-              <h3 className="text-xl font-bold">⚖️ Landmark Verdict in Corruption Case</h3>
-              <p className="mt-2 text-sm text-gray-300 group-hover:text-white transition">
-                Court delivers historic judgment convicting high-profile individuals 
-                involved in a ₹200 crore scam.
-              </p>
-            </div>
-          </div>
+        {/* Call to Action */}
+        <div className="text-center mt-10">
+          <a
+            href="https://www.youtube.com/@Blazenewsmedia"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-block bg-red-600 text-white px-6 py-3 rounded-xl text-lg font-bold shadow-lg hover:bg-red-700 transition"
+          >
+            📺 View More on YouTube
+          </a>
         </div>
       </div>
     </section>

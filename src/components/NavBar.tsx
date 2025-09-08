@@ -1,12 +1,28 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @next/next/no-html-link-for-pages */
-'use client'
+"use client";
 import React, { useState } from "react";
-import { Menu, X, Search, Globe, ChevronDown } from "lucide-react";
+import { Menu, X, PlayCircle } from "lucide-react";
 
 const mockArticles = [
-  { id: 1, title: "Crime in Delhi: Shocking Update", description: "Latest update on the ongoing crime case in Delhi...", image: "/crime1.jpg" },
-  { id: 2, title: "Political Scandal Rocks Parliament", description: "New scandal involving top politicians...", image: "/politics1.jpg" },
-  { id: 3, title: "International Crime Syndicate Busted", description: "Interpol cracks down on major crime ring...", image: "/world1.jpg" },
+  {
+    id: 1,
+    title: "Crime in Delhi: Shocking Update",
+    description: "Latest update on the ongoing crime case in Delhi...",
+    image: "/crime1.jpg",
+  },
+  {
+    id: 2,
+    title: "Political Scandal Rocks Parliament",
+    description: "New scandal involving top politicians...",
+    image: "/politics1.jpg",
+  },
+  {
+    id: 3,
+    title: "International Crime Syndicate Busted",
+    description: "Interpol cracks down on major crime ring...",
+    image: "/world1.jpg",
+  },
 ];
 
 const Navbar = () => {
@@ -14,63 +30,91 @@ const Navbar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredArticles = mockArticles.filter(article =>
+  const filteredArticles = mockArticles.filter((article) =>
     article.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
-    // ✅ Get today's date
-  const today = new Date();
-  const formattedDate = today.toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
 
   return (
     <header className="bg-white shadow-md fixed w-full top-0 z-50">
-      {/* Top Bar */}
-      <div className="bg-red-600 text-white text-sm px-4 py-1 flex justify-between items-center">
-        <span className="font-semibold">Breaking: Major Crime Updates Live 🚨</span>
-        <span className="hidden md:block">{formattedDate}</span>
-      </div>
-
       {/* Main Nav */}
-      <nav className="flex justify-between items-center px-6 py-3">
+      <nav className="flex justify-between items-center px-4 md:px-6 py-3">
         {/* Logo */}
         <div className="flex items-center space-x-2">
           <img
-            src="/logo.png"
+            src="/full_logo.png"
             alt="Blaze News Logo"
-            className="w-12 h-12 object-contain"
+            className="w-10 h-10 md:w-12 md:h-12 object-contain"
           />
-          <h1 className="text-2xl font-extrabold text-red-600 tracking-wide">
+          <h1 className="text-xl md:text-2xl font-extrabold text-red-600 tracking-wide">
             Blaze <span className="text-black">News</span>
           </h1>
         </div>
 
         {/* Desktop Nav Links */}
-        <ul className="hidden lg:flex space-x-8 text-base font-medium text-gray-700">
-          <li><a href="/" className="hover:text-red-600 transition">Home</a></li>
-          <li><a href="/crime" className="hover:text-red-600 transition">Crime</a></li>
-          <li><a href="/investigations" className="hover:text-red-600 transition">Investigations</a></li>
-          <li><a href="/politics" className="hover:text-red-600 transition">Politics</a></li>
-          {/* <li>
-            <a href="/world" className="hover:text-red-600 transition flex items-center gap-1">
-              World <ChevronDown size={16} />
+        <ul className="hidden lg:flex space-x-6 xl:space-x-8 text-sm xl:text-base font-medium text-gray-700">
+          <li>
+            <a href="/" className="hover:text-red-600 transition">
+              Home
             </a>
-          </li> */}
-          <li><a href="/videos" className="hover:text-red-600 transition">Videos</a></li>
-          <li><a href="/contact" className="hover:text-red-600 transition">Contact</a></li>
+          </li>
+          <li>
+            <a href="/" className="hover:text-red-600 transition">
+              India
+            </a>
+          </li>
+          <li>
+            <a href="/" className="hover:text-red-600 transition">
+              Crime
+            </a>
+          </li>
+          <li>
+            <a href="/" className="hover:text-red-600 transition">
+              Politics
+            </a>
+          </li>
+          <li>
+            <a href="/" className="hover:text-red-600 transition">
+              Sports
+            </a>
+          </li>
+          <li>
+            <a href="/" className="hover:text-red-600 transition">
+              Entertainment
+            </a>
+          </li>
+          <li>
+            <a href="/" className="hover:text-red-600 transition">
+              World
+            </a>
+          </li>
+          <li>
+            <a href="/contact" className="hover:text-red-600 transition">
+              contact
+            </a>
+          </li>
         </ul>
 
         {/* Right Controls */}
-        <div className="flex items-center space-x-4">
-          <button aria-label="Search" onClick={() => setSearchOpen(!searchOpen)}>
-            <Search className="w-5 h-5 text-gray-700 hover:text-red-600 transition" />
-          </button>
-          <button aria-label="Language">
-            <Globe className="w-5 h-5 text-gray-700 hover:text-red-600 transition" />
-          </button>
+        <div className="flex items-center space-x-3 md:space-x-4">
+          {/* Location Dropdown */}
+          <select className="hidden md:block border rounded-md text-sm px-2 py-1">
+            <option>India</option>
+            <option>Delhi</option>
+            <option>Mumbai</option>
+            <option>Hyderabad</option>
+            <option>Bengaluru</option>
+            <option>Kolkata</option>
+          </select>
+ 
+          {/* Live TV Button */}
+          <a
+            href="https://www.youtube.com/@Blazenewsmedia"
+            target="_blank"
+            rel="noreferrer"
+            className="hidden md:flex items-center gap-1 bg-red-600 text-white px-3 py-1.5 rounded-lg hover:bg-red-700 text-sm"
+          >
+            <PlayCircle size={16} /> Live TV
+          </a>
 
           {/* Mobile Menu Button */}
           <button
@@ -87,21 +131,72 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Nav */}
+      {/* Mobile Nav Drawer */}
       {mobileOpen && (
         <div className="lg:hidden bg-white border-t shadow-md">
           <ul className="flex flex-col space-y-4 p-4 text-base font-medium text-gray-700">
-            <li><a href="/" className="hover:text-red-600 transition">Home</a></li>
-            <li><a href="/crime" className="hover:text-red-600 transition">Crime</a></li>
-            <li><a href="/investigations" className="hover:text-red-600 transition">Investigations</a></li>
-            <li><a href="/politics" className="hover:text-red-600 transition">Politics</a></li>
-            {/* <li>
-              <a href="/world" className="hover:text-red-600 transition flex items-center gap-1">
-                World <ChevronDown size={16} />
+            <li>
+              <a href="/" className="hover:text-red-600 transition">
+                Home
               </a>
-            </li> */}
-            <li><a href="/videos" className="hover:text-red-600 transition">Videos</a></li>
-            <li><a href="/contact" className="hover:text-red-600 transition">Contact</a></li>
+            </li>
+            <li>
+              <a href="/" className="hover:text-red-600 transition">
+                India
+              </a>
+            </li>
+            <li>
+              <a href="/" className="hover:text-red-600 transition">
+                Crime
+              </a>
+            </li>
+            <li>
+              <a href="/" className="hover:text-red-600 transition">
+                Politics
+              </a>
+            </li>
+            <li>
+              <a href="/" className="hover:text-red-600 transition">
+                Sports
+              </a>
+            </li>
+            <li>
+              <a href="/" className="hover:text-red-600 transition">
+                Entertainment
+              </a>
+            </li>
+            <li>
+              <a href="/" className="hover:text-red-600 transition">
+                World
+              </a>
+            </li>
+            <li>
+            </li>
+            <li>
+              <a href="/contact" className="hover:text-red-600 transition">
+                Contact
+              </a>
+            </li>
+            <li>
+              <select className="w-full border rounded-md text-sm px-2 py-1">
+                <option>India</option>
+                <option>Delhi</option>
+                <option>Mumbai</option>
+                <option>Hyderabad</option>
+                <option>Bengaluru</option>
+                <option>Kolkata</option>
+              </select>
+            </li>
+            <li>
+              <a
+                href="https://youtube.com/@yourchannel"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1 bg-red-600 text-white px-3 py-2 rounded-lg hover:bg-red-700"
+              >
+                <PlayCircle size={18} /> Live TV
+              </a>
+            </li>
           </ul>
         </div>
       )}
@@ -121,11 +216,22 @@ const Navbar = () => {
           {searchQuery && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
               {filteredArticles.length > 0 ? (
-                filteredArticles.map(article => (
-                  <div key={article.id} className="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition">
-                    <img src={article.image} alt={article.title} className="w-full h-32 object-cover rounded-md mb-2" />
-                    <h2 className="font-bold text-lg text-red-600">{article.title}</h2>
-                    <p className="text-gray-600 text-sm">{article.description}</p>
+                filteredArticles.map((article) => (
+                  <div
+                    key={article.id}
+                    className="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition"
+                  >
+                    <img
+                      src={article.image}
+                      alt={article.title}
+                      className="w-full h-32 object-cover rounded-md mb-2"
+                    />
+                    <h2 className="font-bold text-lg text-red-600">
+                      {article.title}
+                    </h2>
+                    <p className="text-gray-600 text-sm">
+                      {article.description}
+                    </p>
                   </div>
                 ))
               ) : (

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @next/next/no-html-link-for-pages */
 import React from "react";
 import { Facebook, Twitter, Youtube, Instagram } from "lucide-react";
@@ -10,7 +11,7 @@ const Footer = () => {
         <div>
           <div className="flex items-center space-x-2">
             <img
-              src="/logo.png" // replace with your Blaze News logo
+              src="/full_logo.png" // replace with your Blaze News logo
               alt="Blaze News Logo"
               className="w-12 h-12 object-contain"
             />
@@ -67,10 +68,10 @@ const Footer = () => {
           </form>
           {/* Social Icons */}
           <div className="flex space-x-4 mt-4">
-            <a href="#" className="hover:text-red-500"><Facebook size={20} /></a>
-            <a href="#" className="hover:text-red-500"><Twitter size={20} /></a>
-            <a href="#" className="hover:text-red-500"><Instagram size={20} /></a>
-            <a href="#" className="hover:text-red-500"><Youtube size={20} /></a>
+            <a href="https://www.facebook.com/share/1BEBaMZZME/"  target="__blank" className="hover:text-red-500"><Facebook size={20} /></a>
+            <a href="#"  target="__blank" className="hover:text-red-500"><Twitter size={20} /></a>
+            <a href="https://www.instagram.com/blazenews.media?igsh=dGN3M3piYm43YWNh"  target="__blank" className="hover:text-red-500"><Instagram size={20} /></a>
+            <a href="https://www.youtube.com/@Blazenewsmedia" target="__blank" className="hover:text-red-500"><Youtube size={20} /></a>
           </div>
         </div>
       </div>

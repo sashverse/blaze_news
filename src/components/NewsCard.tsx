@@ -1,22 +1,25 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import config from "../api/config.json";
 
 type NewsCardProps = {
+  id:string,
   image?: string;
   video?: string;
   title: string;
   description: string;
-  link: string;
+  setReadFullArticle:any;
   category?: string;
 };
 
 const NewsCard: React.FC<NewsCardProps> = ({
   image,
+  id,
   video,
   title,
   description,
-  link,
+  setReadFullArticle,
   category = "Breaking News",
 }) => {
   const renderMedia = () => {
@@ -67,8 +70,8 @@ const NewsCard: React.FC<NewsCardProps> = ({
         </h3>
         <p className="text-gray-700 text-sm mb-4 line-clamp-3">{description}</p>
         <a
-          href={link}
-          className="inline-block text-red-600 font-semibold hover:text-red-700 transition-colors"
+          onClick={()=>setReadFullArticle({ui:true, id:id})}
+          className="cursor-pointer inline-block text-red-600 font-semibold hover:text-red-700 transition-colors"
         >
           Read Full Article →
         </a>
